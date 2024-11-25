@@ -21,6 +21,8 @@ struct ContentView: View {
             // Content changes based on selected option
             Group {
                 switch selectedOption {
+                case "Home":
+                    HomeView()
                 case "Fitness":
                     FitnessView()
                 case "Social":
@@ -36,9 +38,10 @@ struct ContentView: View {
             .padding()
             
             Picker("Options", selection: $selectedOption) {
+                Text("Home").tag("Home")
                 Text("Fitness").tag("Fitness")
-                Text("Social").tag("Social")
                 Text("Diet").tag("Diet")
+                Text("Social").tag("Social")
                 Text("Profile").tag("Profile")
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -52,11 +55,21 @@ struct ContentView: View {
 }
 
 // Individual views for each tab
+struct HomeView: View {
+    var body: some View {
+        Text("Home")
+            .font(.title)
+            .padding()
+        Spacer()
+    }
+}
+
 struct FitnessView: View {
     var body: some View {
         Text("Welcome to Fitness!")
             .font(.title)
             .padding()
+        Spacer()
     }
 }
 
@@ -65,6 +78,7 @@ struct SocialView: View {
         Text("Social interactions go here.")
             .font(.title)
             .padding()
+        Spacer()
     }
 }
 
@@ -73,6 +87,7 @@ struct DietView: View {
         Text("Diet plans and trackers!")
             .font(.title)
             .padding()
+        Spacer()
     }
 }
 
@@ -81,6 +96,7 @@ struct ProfileView: View {
         Text("Your Profile.")
             .font(.title)
             .padding()
+        Spacer()
     }
 }
 
