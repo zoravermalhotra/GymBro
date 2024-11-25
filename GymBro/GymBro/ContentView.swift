@@ -50,7 +50,6 @@ struct ContentView: View {
             
 
         }
-        .edgesIgnoringSafeArea(.bottom) // Extends the VStack to the bottom edge of the screen
     }
 }
 
