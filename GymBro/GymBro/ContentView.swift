@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedOption = "Fitness"
+    @State private var selectedOption = "Home"
     
     var body: some View {
         VStack {
-            Text("GymBro \n      🏋️‍♂️")
-                .font(.system(size: 50))
-                .padding()
             
             Spacer() // Pushes everything above to the top and everything below to the bottom
             
@@ -56,6 +53,10 @@ struct ContentView: View {
 // Individual views for each tab
 struct HomeView: View {
     var body: some View {
+        Text("GymBro \n      🏋️‍♂️")
+            .font(.system(size: 50))
+            .padding()
+        
         Text("Home")
             .font(.title)
             .padding()
@@ -65,9 +66,48 @@ struct HomeView: View {
 
 struct FitnessView: View {
     var body: some View {
-        Text("Welcome to Fitness!")
+        Text("Fitness")
             .font(.title)
-            .padding()
+        
+        NavigationStack{
+            Grid{
+                GridRow{
+                    Button {
+                        print("program")
+                    } label: {
+                        AsyncImage(url: URL(string: "https://www.setforset.com/cdn/shop/articles/what_to_do_before_starting_a_workout_plan_2000x.jpg?v=1708974352")) { image in
+                            image.image?.resizable()}
+                            .frame(width: 180, height: 180)
+                            .clipShape(.rect(cornerRadius: 25))
+                    }
+                    .contentShape(Rectangle())
+                    Button {
+                        print("program")
+                    } label: {
+                        AsyncImage(url: URL(string: "https://tropeaka.com/cdn/shop/articles/main_image_d517c79f-4ec7-4946-bb5e-db7e80623e85_3500x.jpg?v=1571697737")) { image in
+                            image.image?.resizable()}
+                            .frame(width: 180, height: 180)
+                            .clipShape(.rect(cornerRadius: 25))
+                    }                }
+                GridRow {
+                    Button{
+                        print("training")
+                    } label: {
+                        Text("Workout Program")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.primary)
+                    }
+                    Button{
+                        print("exercises")
+                    } label: {
+                        Text("Exercises")
+                            .font(.system(size:20))
+                            .foregroundStyle(.primary)
+                    }
+                }
+            }
+            .font(.title)
+        }
         Spacer()
     }
 }
