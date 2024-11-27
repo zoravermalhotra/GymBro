@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885F220C2CF45C1200373D97 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F220B2CF45C1200373D97 /* Login.swift */; };
 		88725C8B2B905E5500FA9285 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88725C8A2B905E5500FA9285 /* GymBroApp.swift */; };
 		88725C8D2B905E5500FA9285 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88725C8C2B905E5500FA9285 /* ContentView.swift */; };
 		88725C8F2B905E5600FA9285 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88725C8E2B905E5600FA9285 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		885F220B2CF45C1200373D97 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		88725C872B905E5500FA9285 /* GymBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88725C8A2B905E5500FA9285 /* GymBroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
 		88725C8C2B905E5500FA9285 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				88725C8C2B905E5500FA9285 /* ContentView.swift */,
 				88725C8E2B905E5600FA9285 /* Assets.xcassets */,
 				88725C902B905E5600FA9285 /* Preview Content */,
+				885F220B2CF45C1200373D97 /* Login.swift */,
 			);
 			path = GymBro;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				885F220C2CF45C1200373D97 /* Login.swift in Sources */,
 				88725C8D2B905E5500FA9285 /* ContentView.swift in Sources */,
 				88725C8B2B905E5500FA9285 /* GymBroApp.swift in Sources */,
 			);
@@ -422,6 +426,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GymBro/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -450,6 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GymBro/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

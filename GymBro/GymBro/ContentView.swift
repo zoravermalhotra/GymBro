@@ -30,7 +30,7 @@ struct ContentView: View {
                 case "Diet":
                     DietView()
                 case "Profile":
-                    ProfileView()
+                    Login()
                 default:
                     Text("Select an option")
                 }
