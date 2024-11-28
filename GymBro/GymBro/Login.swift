@@ -76,6 +76,7 @@ struct Login: View {
                 wrongPassword = 4
             }
         } else {
+            wrongPassword = 4
             wrongUsername = 4
         }
     }
