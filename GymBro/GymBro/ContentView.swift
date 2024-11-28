@@ -17,7 +17,7 @@ struct ContentView: View {
                 .font(.system(size: 50))
                 .padding()
             
-            Spacer() // Pushes everything above to the top and everything below to the bottom
+            Spacer() // Pushes everything above to the top and everything below to the bottom 
             
             // Content changes based on selected option
             Group {
