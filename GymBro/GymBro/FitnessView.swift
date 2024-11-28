@@ -56,8 +56,8 @@ struct FitnessView: View {
                 }
             }
             .font(.title)
+            Spacer()
         }
-        Spacer()
     }
 }
 
@@ -179,4 +179,8 @@ struct ExercisesView: View {
     var body: some View {
         Text("Exercises View")
     }
+}
+
+#Preview {
+    FitnessView()
 }
