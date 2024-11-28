@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    var username: String
     @State private var selectedOption = "Home"
     
     var body: some View {
         VStack {
+            Text("GymBro \n      🏋️‍♂️")
+                .font(.system(size: 50))
+                .padding()
             
             Spacer() // Pushes everything above to the top and everything below to the bottom
             
@@ -27,7 +31,7 @@ struct ContentView: View {
                 case "Diet":
                     DietView()
                 case "Profile":
-                    ProfileView()
+                    ProfileView(username: username)
                 default:
                     Text("Select an option")
                 }
@@ -53,11 +57,16 @@ struct ContentView: View {
 // Individual views for each tab
 struct HomeView: View {
     var body: some View {
-        Text("GymBro \n      🏋️‍♂️")
-            .font(.system(size: 50))
-            .padding()
-        
         Text("Home")
+            .font(.title)
+            .padding()
+        Spacer()
+    }
+}
+
+struct FitnessView: View {
+    var body: some View {
+        Text("Welcome to Fitness!")
             .font(.title)
             .padding()
         Spacer()
@@ -82,18 +91,9 @@ struct DietView: View {
     }
 }
 
-struct ProfileView: View {
-    var body: some View {
-        Text("Your Profile.")
-            .font(.title)
-            .padding()
-        Spacer()
-    }
-}
-
 // Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Login()
     }
 }
