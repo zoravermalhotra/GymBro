@@ -30,13 +30,15 @@ struct Login: View {
                     .border(Color.red, width: CGFloat(wrongPassword)).cornerRadius(10)
                     .autocapitalization(.none)
 
-                Button("Login") {
+                Button {
                     authenticateUser(username: username, password: password)
+                } label: {
+                    Text("Login")
+                    .foregroundColor(Color.white)
+                    .frame(width: 300, height: 50)
+                    .background(Color.blue)
+                    .cornerRadius(10)
                 }
-                .foregroundColor(Color.white)
-                .frame(width: 300, height: 50)
-                .background(Color.blue)
-                .cornerRadius(10)
 
                 NavigationLink(destination: SignUp()) {
                     Text("Sign Up")
