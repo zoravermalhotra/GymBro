@@ -38,6 +38,12 @@ struct Login: View {
                 .background(Color.blue)
                 .cornerRadius(10)
 
+                NavigationLink(destination: SignUp()) {
+                    Text("Sign Up")
+                        .foregroundColor(Color.blue)
+                        .padding()
+                }
+                
                 Spacer()
             }
         }
@@ -46,6 +52,8 @@ struct Login: View {
             ContentView(username: username)
         }
     }
+    
+    
 
     func authenticateUser(username: String, password: String) {
         if username.lowercased() == "test" {
