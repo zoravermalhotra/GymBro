@@ -97,7 +97,6 @@ struct ProgramEdit: View {
     
     var body: some View {
         NavigationStack {
-            
             Form {
                 // Day Picker
                 Picker("Select Day", selection: $selectedDay) {
@@ -141,8 +140,8 @@ struct ProgramEdit: View {
                     }
                 } else {
                     // Reps and Sets Input
-                    Stepper("Reps: \(reps)", value: $reps, in: 1...50)
-                    Stepper("Sets: \(sets)", value: $sets, in: 1...10)
+                    Stepper("Reps: \(reps)", value: $reps, in: 0...50)
+                    Stepper("Sets: \(sets)", value: $sets, in: 0...10)
                 }
                 
                 // Save Button
