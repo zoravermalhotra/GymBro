@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedOption = "Fitness"
+    var username: String
+    @State private var selectedOption = "Home"
     
     var body: some View {
         VStack {
@@ -30,7 +31,7 @@ struct ContentView: View {
                 case "Diet":
                     DietView()
                 case "Profile":
-                    Login()
+                    ProfileView(username: username)
                 default:
                     Text("Select an option")
                 }
@@ -90,18 +91,9 @@ struct DietView: View {
     }
 }
 
-struct ProfileView: View {
-    var body: some View {
-        Text("Your Profile.")
-            .font(.title)
-            .padding()
-        Spacer()
-    }
-}
-
 // Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Login()
     }
 }
