@@ -13,10 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("GymBro \n      🏋️‍♂️")
-                .font(.system(size: 50))
-                .padding()
-            
+
             Spacer() // Pushes everything above to the top and everything below to the bottom 
             
             // Content changes based on selected option
@@ -57,16 +54,11 @@ struct ContentView: View {
 // Individual views for each tab
 struct HomeView: View {
     var body: some View {
-        Text("Home")
-            .font(.title)
+        Text("GymBro \n      🏋️‍♂️")
+            .font(.system(size: 50))
             .padding()
-        Spacer()
-    }
-}
-
-struct FitnessView: View {
-    var body: some View {
-        Text("Welcome to Fitness!")
+        
+        Text("Home")
             .font(.title)
             .padding()
         Spacer()

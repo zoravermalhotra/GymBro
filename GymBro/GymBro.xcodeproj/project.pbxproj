@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1240D92CF54BE500CA860A /* FitnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1240D82CF54BDF00CA860A /* FitnessView.swift */; };
 		2B165D9E2CF84E24000772A8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B165D9D2CF84E20000772A8 /* ProfileView.swift */; };
 		2B165DA02CF8539B000772A8 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B165D9F2CF85396000772A8 /* SignUp.swift */; };
 		885F220C2CF45C1200373D97 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F220B2CF45C1200373D97 /* Login.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B1240D82CF54BDF00CA860A /* FitnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessView.swift; sourceTree = "<group>"; };
 		2B165D9D2CF84E20000772A8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2B165D9F2CF85396000772A8 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		885F220B2CF45C1200373D97 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		88725C892B905E5500FA9285 /* GymBro */ = {
 			isa = PBXGroup;
 			children = (
+				2B1240D82CF54BDF00CA860A /* FitnessView.swift */,
 				2B165D9F2CF85396000772A8 /* SignUp.swift */,
 				2B165D9D2CF84E20000772A8 /* ProfileView.swift */,
 				88725C8A2B905E5500FA9285 /* GymBroApp.swift */,
@@ -270,6 +273,7 @@
 				885F220C2CF45C1200373D97 /* Login.swift in Sources */,
 				88725C8D2B905E5500FA9285 /* ContentView.swift in Sources */,
 				88725C8B2B905E5500FA9285 /* GymBroApp.swift in Sources */,
+				2B1240D92CF54BE500CA860A /* FitnessView.swift in Sources */,
 				2B165DA02CF8539B000772A8 /* SignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GymBro/Preview Content\"";
-				DEVELOPMENT_TEAM = 6K9X78XM2P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -447,7 +451,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = joshuagudgin.GymBro;
+				PRODUCT_BUNDLE_IDENTIFIER = zoravermalhotra.GymBro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -463,7 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GymBro/Preview Content\"";
-				DEVELOPMENT_TEAM = 6K9X78XM2P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -476,7 +480,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = joshuagudgin.GymBro;
+				PRODUCT_BUNDLE_IDENTIFIER = zoravermalhotra.GymBro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
