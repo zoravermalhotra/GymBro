@@ -51,20 +51,6 @@ struct ContentView: View {
     }
 }
 
-// Individual views for each tab
-struct HomeView: View {
-    var body: some View {
-        Text("GymBro \n      🏋️‍♂️")
-            .font(.system(size: 50))
-            .padding()
-        
-        Text("Home")
-            .font(.title)
-            .padding()
-        Spacer()
-    }
-}
-
 struct SocialView: View {
     var body: some View {
         Text("Social interactions go here.")
