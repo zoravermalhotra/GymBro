@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var manager: HealthManager
     var body: some View {
         VStack{
             Text("GymBro")
@@ -19,44 +20,14 @@ struct HomeView: View {
         
         VStack {
             LazyVGrid(columns: Array(repeating: GridItem(spacing: 20), count: 2)){
-                ActivityCard()
-                
-                ActivityCard()
+                ForEach(manager.activities.sorted(by: { $0.value.id < $1.value.id }), id: \.key) { item in
+                    ActivityCard(activity: item.value)
+                    
+                }
             }
         }
         
         Spacer()
-    }
-}
-
-
-struct ActivityCard: View {
-    var body: some View {
-        ZStack{
-            Color(uiColor: .systemGray6)
-                .cornerRadius(15)
-            VStack(spacing: 10){
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 5){
-                        Text("Steps today")
-                            .font(.system(size: 16))
-                        
-                        Text("Goal: 10,000")
-                            .font(.system(size: 16))
-                            .foregroundColor(.gray)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "figure.walk")
-                }
-                
-                Text("1234")
-            }
-            
-            .padding()
-        }
-        
     }
 }
     

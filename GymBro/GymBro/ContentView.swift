@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var username: String
     @State private var selectedOption = "Home"
+    @EnvironmentObject var manager: HealthManager
+    
     
     var body: some View {
         VStack {
@@ -34,6 +36,7 @@ struct ContentView: View {
                 }
             }
             .padding()
+            .environmentObject(manager)
             
             Picker("Options", selection: $selectedOption) {
                 Text("Home").tag("Home")

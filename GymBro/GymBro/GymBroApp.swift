@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct GymBroApp: App {
+    @StateObject var manager = HealthManager()
+    
     var body: some Scene {
         WindowGroup {
             Login()
+                .environmentObject(manager)
         }
     }
 }
