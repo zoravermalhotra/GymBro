@@ -11,67 +11,43 @@ struct HomeView: View {
     @EnvironmentObject var manager: HealthManager
     @State private var isToggled: Bool = false
     
+    var filteredActivities: [Activity] {
+        manager.activities
+            .filter { isToggled ? $0.value.id >= 10 && $0.value.id < 20 : $0.value.id < 10 }
+            .map { $0.value }
+    }
+    
     var body: some View {
-        VStack {
-            Text("GymBro")
-                .font(.system(size: 50))
-            
-            Text("🏋️‍♂️")
-                .font(.system(size: 50))
-            
-            // Toggle for switching IDs
-            Toggle("Week", isOn: $isToggled)
-                .padding()
-                .onChange(of: isToggled) {
-                    if isToggled {
-                        updateActivities()
-                    } else {
-                        resetActivities()
+        NavigationView { // Embed in a NavigationView
+            VStack {
+                Text("GymBro")
+                    .font(.system(size: 50))
+                
+                Text("🏋️‍♂️")
+                    .font(.system(size: 50))
+                
+                // Toggle for switching between week and day
+                Toggle("Week", isOn: $isToggled)
+                    .padding()
+                
+                VStack {
+                    LazyVGrid(columns: Array(repeating: GridItem(spacing: 20), count: 2)) {
+                        ForEach(filteredActivities, id: \.id) { activity in
+                            NavigationLink(destination: CustomizeCards()) {
+                                ActivityCard(activity: activity)
+                            }
+                        }
                     }
                 }
-        }
-        
-        VStack {
-            LazyVGrid(columns: Array(repeating: GridItem(spacing: 20), count: 2)) {
-                ForEach(manager.activities.sorted(by: { $0.value.id < $1.value.id }), id: \.key) { item in
-                    ActivityCard(activity: item.value)
-                }
+                
+                Spacer()
             }
-        }
-        
-        Spacer()
-    }
-    
-    // Function to update IDs
-    func updateActivities() {
-        manager.activities = manager.activities.mapValues { activity in
-            if activity.id < 10 {
-                return Activity(
-                    id: activity.id + 10,
-                    title: activity.title,
-                    subtitle: activity.subtitle,
-                    image: activity.image,
-                    amount: activity.amount
-                )
-            }
-            return activity
-        }
-    }
-    
-    // Function to reset IDs
-    func resetActivities() {
-        manager.activities = manager.activities.mapValues { activity in
-            if activity.id > 10 {
-                return Activity(
-                    id: activity.id - 10,
-                    title: activity.title,
-                    subtitle: activity.subtitle,
-                    image: activity.image,
-                    amount: activity.amount
-                )
-            }
-            return activity
         }
     }
 }
 
+struct CustomizeCards: View {
+    var body: some View {
+        Text("Hi")
+    }
+}
