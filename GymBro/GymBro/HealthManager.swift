@@ -12,6 +12,10 @@ extension Date {
     static var startOfDay: Date {
         Calendar.current.startOfDay(for: Date())
     }
+    
+    static var startOfWeek: Date {
+        Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))!
+    }
 }
 
 class HealthManager: ObservableObject {
@@ -31,6 +35,8 @@ class HealthManager: ObservableObject {
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
                 fetchTodaySteps()
                 fetchTodayCalories()
+                fetchWeekSteps()
+                fetchWeekCalories()
             } catch {
                 print("Error requesting authorization: \(error)")
             }
@@ -47,7 +53,7 @@ class HealthManager: ObservableObject {
             }
             
             let stepCount = quantity.doubleValue(for: .count())
-            let activity = Activity(id: 0, title: "Todays Steps", subtitle: "Goal: 10,000", image: "figure.walk", amount: stepCount.formattedString())
+            let activity = Activity(id: 0, title: "Steps", subtitle: "Goal: 10,000", image: "figure.walk", amount: stepCount.formattedString())
             
             DispatchQueue.main.async {
                 self.activities["todaySteps"] = activity
@@ -58,9 +64,29 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
     }
     
+    func fetchWeekSteps(){
+        let steps = HKQuantityType(.stepCount)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfWeek, end: Date())
+        let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("error fetching week calories: \(error?.localizedDescription ?? "unknown error")")
+                return
+            }
+            
+            let stepCount = quantity.doubleValue(for: .count())
+            let activity = Activity(id: 10, title: "Steps", subtitle: "Goal: 10000", image: "figure.walk", amount: stepCount.formattedString())
+            
+            
+            DispatchQueue.main.async {
+                self.activities["weekSteps"] = activity
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+    
     func fetchTodayCalories(){
         let calories = HKQuantityType(.activeEnergyBurned)
-        
         let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
         let query = HKStatisticsQuery(quantityType: calories, quantitySamplePredicate: predicate) { _, result, error in
             guard let quantity = result?.sumQuantity(), error == nil else {
@@ -69,7 +95,7 @@ class HealthManager: ObservableObject {
             }
             
             let caloriesBurned = quantity.doubleValue(for: .kilocalorie())
-            let activity = Activity(id: 1, title: "Todays Calories", subtitle: "Goal: 800", image: "flame", amount: caloriesBurned.formattedString())
+            let activity = Activity(id: 1, title: "Calories", subtitle: "Goal: 800", image: "flame", amount: caloriesBurned.formattedString())
             
             DispatchQueue.main.async{
                 self.activities["todayCalories"] = activity
@@ -79,16 +105,34 @@ class HealthManager: ObservableObject {
         
         healthStore.execute(query)
     }
-}
-
-
-extension Double {
-    func formattedString() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 0
-        return numberFormatter.string(from: NSNumber(value: self))!
+    
+    func fetchWeekCalories(){
+        let calories = HKQuantityType(.activeEnergyBurned)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfWeek, end: Date())
+        let query = HKStatisticsQuery(quantityType: calories, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("error fetching week calories: \(error?.localizedDescription ?? "unknown error")")
+                return
+            }
+            
+            let caloriesBurned = quantity.doubleValue(for: .kilocalorie())
+            let activity = Activity(id: 11, title: "Calories", subtitle: "Goal: 5,600", image: "flame", amount: caloriesBurned.formattedString())
+            
+            DispatchQueue.main.async{
+                self.activities["weekCalories"] = activity
+            }
+        }
+        
+        healthStore.execute(query)
+        
     }
 }
-
-
+    
+    extension Double {
+        func formattedString() -> String {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.maximumFractionDigits = 0
+            return numberFormatter.string(from: NSNumber(value: self))!
+        }
+    }

@@ -35,7 +35,7 @@ struct ActivityCard: View {
                     
                     Spacer()
                     
-                    Image(systemName: "figure.walk")
+                    Image(activity.image)
                 }
                 
                 Text(activity.amount)
