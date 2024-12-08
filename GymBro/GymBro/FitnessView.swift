@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FitnessView: View {
+    @State private var workouts: [Workout] = []
+    
     var body: some View {
         Text("Fitness")
             .font(.title)
@@ -16,7 +18,7 @@ struct FitnessView: View {
             Grid{
                 GridRow{
                     NavigationLink {
-                        WorkoutProgramView()
+                        WorkoutProgramView(workouts: $workouts)
                     } label: {
                         AsyncImage(url: URL(string: "https://www.setforset.com/cdn/shop/articles/what_to_do_before_starting_a_workout_plan_2000x.jpg?v=1708974352")) { image in
                             image.image?.resizable()}
@@ -34,7 +36,7 @@ struct FitnessView: View {
                     }                }
                 GridRow {
                     NavigationLink{
-                        WorkoutProgramView()
+                        WorkoutProgramView(workouts: $workouts)
                     } label: {
                         Text("Workout Program")
                             .font(.system(size: 20))
@@ -71,19 +73,60 @@ struct Workout: Identifiable{
 }
 
 struct WorkoutProgramView: View {
+    @Binding var workouts: [Workout] // Binding passed from FitnessView
+    
+    // Define the order of days for sorting
+    let daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
     var body: some View {
-        NavigationLink{
-            ProgramEdit()
-        } label: {
-            Text("Create / edit a program")
+        VStack {
+            Spacer()
+            
+            if workouts.isEmpty {
+                Text("No workouts added yet.")
+                    .foregroundStyle(.secondary)
+                
+                NavigationLink {
+                    ProgramEdit(workouts: $workouts)
+                } label: {
+                    Text("Create a Program")
+                        .padding()
+                }
+                
+                Spacer()
+            } else {
+                List {
+                    NavigationLink {
+                        ProgramEdit(workouts: $workouts)
+                    } label: {
+                        Text("Edit Program")
+                    }
+                    
+                    // Sort workouts by day order before displaying
+                    ForEach(workouts.sorted { (a, b) in
+                        // Compare indices of days in the `daysOrder` array
+                        daysOrder.firstIndex(of: a.day)! < daysOrder.firstIndex(of: b.day)!
+                    }) { workout in
+                        VStack(alignment: .leading) {
+                            Text("\(workout.day): \(workout.exercise)")
+                                .font(.headline)
+                            if let duration = workout.duration {
+                                Text("Duration: \(duration)")
+                            } else {
+                                Text("Sets: \(workout.sets), Reps: \(workout.reps)")
+                            }
+                        }
+                    }
+                }
+            }
         }
-        Text("Current Workout Program")
-        
-        Spacer()
+        .navigationTitle("Workout Program")
     }
 }
 
 struct ProgramEdit: View {
+    @Binding var workouts: [Workout]
+    
     @State private var selectedDay = "Monday"
     @State private var exercise: String = ""
     @State private var reps = 0
@@ -91,9 +134,6 @@ struct ProgramEdit: View {
     @State private var toggleTimeInput: Bool = false
     @State private var durationMins = 0
     @State private var durationHrs = 0
-    
-    // State for the list of saved workouts
-    @State private var workouts: [Workout] = []
     
     var body: some View {
         NavigationStack {
@@ -159,17 +199,49 @@ struct ProgramEdit: View {
                     Text("Add to Workout Program")
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
+                // Workout Preview Section
+                if !workouts.isEmpty {
+                    Section(header: Text("Swipe to remove workouts")) {
+                        List {
+                            ForEach(workouts) { workout in
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("\(workout.day): \(workout.exercise)")
+                                            .font(.headline)
+                                        if let duration = workout.duration {
+                                            Text("Duration: \(duration)")
+                                                .font(.subheadline)
+                                        } else {
+                                            Text("Sets: \(workout.sets), Reps: \(workout.reps)")
+                                                .font(.subheadline)
+                                        }
+                                    }
+                                }
+                            }
+                            .onDelete(perform: deleteWorkout) // Add ability to delete workouts
+                        }
+                    }
+                }
             }
         }
-        .navigationTitle("Workout Program")
+        .navigationTitle("Edit Your Workout Program")
     }
+    
+    
     
     // Clear form fields after saving
     private func clearForm() {
-        selectedDay = "Monday"
         exercise = ""
         reps = 0
         sets = 0
+        toggleTimeInput = false
+        durationHrs = 0
+        durationMins = 0
+    }
+    
+    // Delete workout from the list
+    private func deleteWorkout(at offsets: IndexSet) {
+        workouts.remove(atOffsets: offsets)
     }
 }
 
